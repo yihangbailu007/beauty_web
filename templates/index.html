@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片美颜工具</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>图片美颜工具</h1>
+    <form action="/process" method="POST" enctype="multipart/form-data">
+        <label>选择图片：</label>
+        <input type="file" name="file" required><br><br>
+
+        <label>亮度：</label>
+        <input type="range" name="brightness" min="0" max="100" value="50"><br><br>
+
+        <label>对比度：</label>
+        <input type="range" name="contrast" min="0" max="100" value="50"><br><br>
+
+        <label>磨皮程度：</label>
+        <input type="range" name="blur" min="0" max="30" value="0"><br><br>
+
+        <button type="submit">美颜处理</button>
+    </form>
+
+    {% if original %}
+        <h2>原始图片</h2>
+        <img src="/static/uploads/{{ original }}" alt="Original Image" style="max-width: 300px;"><br>
+        <h2>处理后图片</h2>
+        <img src="/static/uploads/{{ processed }}" alt="Processed Image" style="max-width: 300px;"><br>
+        <a href="/download/{{ processed }}">下载处理后的图片</a>
+    {% endif %}
+</body>
+</html>
